@@ -1,0 +1,1229 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080d1b">
+
+  <title>VideoDownloader | Download for Android</title>
+
+  <meta name="description"
+        content="Discover VideoDownloader for Android. Get the APK, explore the features, and follow our simple installation guide.">
+
+  <link rel="icon" type="image/png" href="app_icon.png">
+
+  <style>
+    /* =========================
+       1. GLOBAL DESIGN
+    ========================== */
+    :root {
+      --bg: #080d1b;
+      --surface: #111a2e;
+      --surface-light: #17233b;
+      --primary: #6d91ff;
+      --secondary: #51e1cf;
+      --text: #f7f9ff;
+      --muted: #a5b1c9;
+      --border: rgba(255, 255, 255, 0.10);
+      --gradient: linear-gradient(110deg, #7297ff, #54e4d1);
+      --radius: 22px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
+
+    body {
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
+      background:
+        radial-gradient(ellipse at 10% 0%, #172a50 0, transparent 35%),
+        radial-gradient(ellipse at 100% 35%, #102b35 0, transparent 30%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button:focus-visible, a:focus-visible, summary:focus-visible {
+      outline: 3px solid var(--secondary);
+      outline-offset: 4px;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 40px));
+      margin-inline: auto;
+    }
+
+    .section {
+      padding: 90px 0;
+    }
+
+    .section-heading {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 44px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(28px, 4vw, 42px);
+      letter-spacing: -1.5px;
+      line-height: 1.2;
+      margin-bottom: 15px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+    }
+
+    .gradient-text {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: #b8f6ed;
+      background: rgba(81, 225, 207, 0.08);
+      border: 1px solid rgba(81, 225, 207, 0.2);
+      padding: 7px 14px;
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1.3px;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--secondary);
+    }
+
+    /* =========================
+       2. NAVIGATION
+    ========================== */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(8, 13, 27, 0.88);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 850;
+      font-size: 19px;
+      letter-spacing: -0.5px;
+    }
+
+    .brand img {
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      object-fit: contain;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 27px;
+    }
+
+    .nav-links > a:not(.button) {
+      color: var(--muted);
+      font-size: 14px;
+      transition: color .2s;
+    }
+
+    .nav-links > a:not(.button):hover {
+      color: white;
+    }
+
+    /* =========================
+       3. BUTTONS
+    ========================== */
+    .button {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      min-height: 52px;
+      padding: 13px 23px;
+      border: 1px solid transparent;
+      border-radius: 14px;
+      font-size: 15px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform .2s, filter .2s, box-shadow .2s;
+    }
+
+    .button:hover {
+      transform: translateY(-3px);
+      filter: brightness(1.07);
+    }
+
+    .button-primary {
+      background: var(--gradient);
+      color: #07131c;
+      box-shadow: 0 10px 32px rgba(81, 180, 207, .18);
+    }
+
+    .button-secondary {
+      border-color: var(--border);
+      color: var(--text);
+      background: rgba(255, 255, 255, .035);
+    }
+
+    .button svg {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+    }
+
+    /* =========================
+       4. HERO
+    ========================== */
+    .hero {
+      display: grid;
+      grid-template-columns: 1.12fr .88fr;
+      gap: 65px;
+      align-items: center;
+      padding-top: 85px;
+      padding-bottom: 90px;
+    }
+
+    .hero h1 {
+      font-size: clamp(42px, 6vw, 70px);
+      line-height: 1.07;
+      letter-spacing: -3.5px;
+      margin: 25px 0 22px;
+    }
+
+    .hero-description {
+      max-width: 600px;
+      font-size: 17px;
+      color: var(--muted);
+      margin-bottom: 30px;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 13px;
+    }
+
+    .hero-note {
+      margin-top: 19px;
+      color: #8795b0;
+      font-size: 12px;
+    }
+
+    .hero-visual {
+      position: relative;
+      display: grid;
+      place-items: center;
+      min-height: 420px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 32px;
+      background:
+        radial-gradient(circle at 50% 42%, rgba(89, 126, 255, .22), transparent 58%),
+        linear-gradient(145deg, rgba(255,255,255,.045), rgba(255,255,255,.01));
+    }
+
+    .hero-visual::before,
+    .hero-visual::after {
+      content: "";
+      position: absolute;
+      width: 270px;
+      height: 270px;
+      border: 1px solid rgba(126, 162, 255, .2);
+      border-radius: 50%;
+    }
+
+    .hero-visual::after {
+      width: 365px;
+      height: 365px;
+      border-color: rgba(81, 225, 207, .12);
+    }
+
+    .app-preview {
+      position: relative;
+      z-index: 2;
+      width: 225px;
+      padding: 12px;
+      border-radius: 34px;
+      border: 1px solid rgba(255,255,255,.2);
+      background: #060a13;
+      box-shadow: 0 30px 80px rgba(0,0,0,.5);
+      transform: rotate(-4deg);
+    }
+
+    .app-screen {
+      padding: 25px 15px;
+      min-height: 335px;
+      border-radius: 25px;
+      background: linear-gradient(160deg, #1a2c4d, #0d1425);
+    }
+
+    .speaker {
+      width: 65px;
+      height: 5px;
+      background: #364361;
+      border-radius: 20px;
+      margin: 0 auto 28px;
+    }
+
+    .app-preview-icon {
+      width: 76px;
+      height: 76px;
+      object-fit: contain;
+      border-radius: 21px;
+      margin: 0 auto 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.25);
+    }
+
+    .app-preview-title {
+      text-align: center;
+      font-size: 16px;
+      font-weight: 850;
+    }
+
+    .app-preview-subtitle {
+      color: var(--muted);
+      text-align: center;
+      font-size: 11px;
+      margin: 5px 0 25px;
+    }
+
+    .fake-input {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.035);
+      color: #9cabc6;
+      border-radius: 11px;
+      padding: 11px;
+      font-size: 10px;
+    }
+
+    .fake-action {
+      margin-top: 12px;
+      text-align: center;
+      border-radius: 11px;
+      background: var(--gradient);
+      color: #08111d;
+      padding: 9px;
+      font-size: 11px;
+      font-weight: 850;
+    }
+
+    /* =========================
+       5. HIGHLIGHTS
+    ========================== */
+    .highlights {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 8px;
+    }
+
+    .highlight {
+      padding: 25px;
+      border: 1px solid var(--border);
+      border-radius: 19px;
+      background: rgba(255,255,255,.025);
+    }
+
+    .highlight strong {
+      display: block;
+      font-size: 16px;
+      margin-bottom: 5px;
+    }
+
+    .highlight p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .highlight-icon {
+      display: grid;
+      place-items: center;
+      width: 43px;
+      height: 43px;
+      margin-bottom: 17px;
+      border-radius: 13px;
+      color: #a9c0ff;
+      background: rgba(109,145,255,.12);
+      font-size: 21px;
+    }
+
+    /* =========================
+       6. FEATURES
+    ========================== */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .feature-card {
+      padding: 27px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: linear-gradient(145deg, rgba(20,31,54,.85), rgba(12,19,35,.85));
+      transition: transform .2s, border-color .2s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(109,145,255,.4);
+    }
+
+    .feature-icon {
+      display: grid;
+      place-items: center;
+      width: 49px;
+      height: 49px;
+      margin-bottom: 20px;
+      border-radius: 15px;
+      background: rgba(109,145,255,.12);
+      color: #a8c0ff;
+      font-size: 24px;
+    }
+
+    .feature-card h3 {
+      font-size: 17px;
+      margin-bottom: 9px;
+    }
+
+    .feature-card p {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    /* =========================
+       7. DOWNLOAD PANEL
+    ========================== */
+    .download-section {
+      padding: 45px 0 90px;
+    }
+
+    .download-panel {
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 30px;
+      padding: 45px;
+      border: 1px solid rgba(109,145,255,.28);
+      border-radius: 28px;
+      background:
+        radial-gradient(ellipse at 100% 0%, rgba(81,225,207,.12), transparent 50%),
+        linear-gradient(120deg, rgba(109,145,255,.13), rgba(255,255,255,.025));
+    }
+
+    .download-panel h2 {
+      font-size: clamp(28px, 4vw, 39px);
+      letter-spacing: -1.3px;
+      line-height: 1.2;
+      margin-bottom: 13px;
+    }
+
+    .download-panel p {
+      max-width: 620px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .download-panel .button {
+      white-space: nowrap;
+    }
+
+    .download-meta {
+      margin-top: 14px;
+      color: #8491ac;
+      font-size: 12px;
+    }
+
+    /* =========================
+       8. INSTALLATION GUIDE
+    ========================== */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 17px;
+    }
+
+    .step {
+      padding: 24px;
+      border: 1px solid var(--border);
+      border-radius: 19px;
+      background: rgba(255,255,255,.025);
+    }
+
+    .step-number {
+      display: grid;
+      place-items: center;
+      width: 43px;
+      height: 43px;
+      margin-bottom: 20px;
+      border-radius: 13px;
+      background: rgba(81,225,207,.1);
+      color: var(--secondary);
+      font-weight: 900;
+    }
+
+    .step h3 {
+      font-size: 15px;
+      margin-bottom: 9px;
+    }
+
+    .step p {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* =========================
+       9. FAQ
+    ========================== */
+    .faq {
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .faq details {
+      border-bottom: 1px solid var(--border);
+      padding: 21px 4px;
+    }
+
+    .faq summary {
+      cursor: pointer;
+      font-weight: 750;
+      list-style-position: outside;
+    }
+
+    .faq details p {
+      padding-top: 13px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .notice {
+      padding: 22px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: rgba(255,255,255,.025);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .notice strong {
+      color: var(--text);
+    }
+
+    /* =========================
+       10. FOOTER
+    ========================== */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 30px 0;
+      color: #8491aa;
+      font-size: 13px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+
+    .footer-links a:hover {
+      color: white;
+    }
+
+    /* =========================
+       11. MOBILE RESPONSIVENESS
+    ========================== */
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding-top: 60px;
+      }
+
+      .hero-content {
+        text-align: center;
+      }
+
+      .hero-description {
+        margin-inline: auto;
+      }
+
+      .hero-actions {
+        justify-content: center;
+      }
+
+      .hero-visual {
+        max-width: 520px;
+        width: 100%;
+        margin: auto;
+      }
+
+      .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .steps {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .download-panel {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .download-panel p {
+        margin-inline: auto;
+      }
+
+      .download-panel .button {
+        justify-self: center;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        width: calc(100% - 30px);
+      }
+
+      .section {
+        padding: 65px 0;
+      }
+
+      .nav-inner {
+        min-height: 68px;
+      }
+
+      .brand {
+        font-size: 15px;
+        gap: 9px;
+      }
+
+      .brand img {
+        width: 39px;
+        height: 39px;
+      }
+
+      .nav-links {
+        gap: 0;
+      }
+
+      .nav-links > a:not(.button) {
+        display: none;
+      }
+
+      .nav-download {
+        min-height: 41px;
+        padding: 9px 13px;
+        font-size: 12px;
+      }
+
+      .hero {
+        padding-top: 48px;
+        padding-bottom: 55px;
+      }
+
+      .hero h1 {
+        font-size: clamp(40px, 11vw, 58px);
+        letter-spacing: -2px;
+      }
+
+      .hero-description {
+        font-size: 15px;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .hero-actions .button {
+        width: 100%;
+      }
+
+      .hero-visual {
+        min-height: 365px;
+      }
+
+      .app-preview {
+        width: 205px;
+      }
+
+      .app-screen {
+        min-height: 310px;
+      }
+
+      .highlights,
+      .features-grid,
+      .steps {
+        grid-template-columns: 1fr;
+      }
+
+      .highlight,
+      .feature-card,
+      .step {
+        padding: 23px;
+      }
+
+      .download-panel {
+        padding: 28px 20px;
+      }
+
+      .download-panel .button {
+        width: 100%;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================
+       NAVIGATION
+  ========================== -->
+  <header class="navbar">
+    <div class="container nav-inner">
+
+      <a class="brand" href="#home" aria-label="VideoDownloader home">
+        <img src="app_icon.png" alt="VideoDownloader icon">
+        <span>VideoDownloader</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#features">Features</a>
+        <a href="#install">Installation</a>
+        <a href="#faq">FAQ</a>
+
+        <a class="button button-primary nav-download"
+           href="#download">
+          Get the app
+        </a>
+      </nav>
+
+    </div>
+  </header>
+
+  <main>
+
+    <!-- =========================
+         HERO SECTION
+    ========================== -->
+    <section class="container hero" id="home">
+
+      <div class="hero-content">
+
+        <span class="eyebrow">
+          <span class="status-dot"></span>
+          BUILT FOR ANDROID
+        </span>
+
+        <h1>
+          Your videos.<br>
+          <span class="gradient-text">Your way.</span>
+        </h1>
+
+        <p class="hero-description">
+          Discover VideoDownloader, an Android app designed to make
+          your video downloading experience simple and convenient.
+          Get the APK directly from the developer.
+        </p>
+
+        <div class="hero-actions">
+
+          <a class="button button-primary"
+             href="#download">
+
+            <svg viewBox="0 0 24 24" fill="none"
+                 aria-hidden="true">
+              <path d="M12 3v12m0 0 4-4m-4 4-4-4M5 16v3a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-3"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"/>
+            </svg>
+
+            Download for Android
+          </a>
+
+          <a class="button button-secondary"
+             href="#features">
+            Explore features
+          </a>
+
+        </div>
+
+        <p class="hero-note">
+          Direct APK download · Android app · Free to download
+        </p>
+
+      </div>
+
+      <!-- App preview uses your actual icon -->
+      <div class="hero-visual">
+
+        <div class="app-preview">
+          <div class="app-screen">
+
+            <div class="speaker"></div>
+
+            <img class="app-preview-icon"
+                 src="app_icon.png"
+                 alt="VideoDownloader app icon">
+
+            <div class="app-preview-title">
+              VideoDownloader
+            </div>
+
+            <div class="app-preview-subtitle">
+              Your video companion
+            </div>
+
+            <div class="fake-input">
+              Paste a video link here...
+            </div>
+
+            <div class="fake-action">
+              Get started
+            </div>
+
+            <div style="height: 13px"></div>
+
+            <div class="fake-input">
+              Manage your downloads
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- =========================
+         HIGHLIGHTS
+    ========================== -->
+    <section class="container">
+
+      <div class="highlights">
+
+        <article class="highlight">
+          <div class="highlight-icon">↓</div>
+          <strong>Direct download</strong>
+          <p>Access the APK using the developer's download link.</p>
+        </article>
+
+        <article class="highlight">
+          <div class="highlight-icon">◈</div>
+          <strong>Android focused</strong>
+          <p>A website designed for phone, tablet, and desktop screens.</p>
+        </article>
+
+        <article class="highlight">
+          <div class="highlight-icon">✓</div>
+          <strong>Easy installation</strong>
+          <p>Follow the step-by-step guide to install the APK.</p>
+        </article>
+
+      </div>
+
+    </section>
+
+    <!-- =========================
+         FEATURES
+    ========================== -->
+    <section class="section" id="features">
+
+      <div class="container">
+
+        <div class="section-heading">
+          <span class="eyebrow">APP HIGHLIGHTS</span>
+
+          <h2>
+            A simpler way to get started
+          </h2>
+
+          <p>
+            Everything you need to discover the app, access the
+            download, and understand the installation process.
+          </p>
+        </div>
+
+        <div class="features-grid">
+
+          <article class="feature-card">
+            <div class="feature-icon">↧</div>
+            <h3>APK download</h3>
+            <p>
+              Get the Android installation package through the
+              download link provided on this website.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">▣</div>
+            <h3>Simple experience</h3>
+            <p>
+              A clean interface designed to help users navigate
+              the app's available features.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">◉</div>
+            <h3>Mobile-friendly</h3>
+            <p>
+              Access this website using Chrome or another modern
+              browser on your phone or computer.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">↗</div>
+            <h3>Supported sources</h3>
+            <p>
+              Check the sources supported by your installed app.
+              Availability depends on the source and its restrictions.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">◇</div>
+            <h3>Clear guidance</h3>
+            <p>
+              Read the installation guide before installing an
+              application from outside an app store.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">♡</div>
+            <h3>Made for users</h3>
+            <p>
+              A dedicated home for the VideoDownloader app and
+              its official download information.
+            </p>
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- =========================
+         DOWNLOAD
+    ========================== -->
+    <section class="download-section" id="download">
+
+      <div class="container">
+
+        <div class="download-panel">
+
+          <div>
+
+            <span class="eyebrow">
+              ANDROID DOWNLOAD
+            </span>
+
+            <h2 style="margin-top: 18px">
+              Get <span class="gradient-text">VideoDownloader</span>
+            </h2>
+
+            <p>
+              Download the APK using your Google Drive file link.
+              After downloading, follow the installation instructions
+              below.
+            </p>
+
+            <div class="download-meta">
+              File: Android APK · Version: See the downloaded app details
+            </div>
+
+          </div>
+
+          <!-- Google Drive APK link -->
+          <a class="button button-primary"
+             href="https://drive.google.com/uc?export=download&amp;id=12IqYHW5EpxLoLci_BvjNNZc2Yc5-X639"
+             target="_blank"
+             rel="noopener noreferrer">
+
+            <svg viewBox="0 0 24 24" fill="none"
+                 aria-hidden="true">
+              <path d="M12 3v12m0 0 4-4m-4 4-4-4M5 16v3a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-3"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"/>
+            </svg>
+
+            Download APK
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- =========================
+         INSTALLATION GUIDE
+    ========================== -->
+    <section class="section" id="install">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <span class="eyebrow">QUICK INSTALLATION</span>
+
+          <h2>Install in four steps</h2>
+
+          <p>
+            Follow these instructions to install VideoDownloader
+            on a compatible Android device.
+          </p>
+
+        </div>
+
+        <div class="steps">
+
+          <article class="step">
+            <div class="step-number">01</div>
+            <h3>Download the APK</h3>
+            <p>
+              Tap the Download APK button above. If Google Drive
+              displays a confirmation page, follow its instructions.
+            </p>
+          </article>
+
+          <article class="step">
+            <div class="step-number">02</div>
+            <h3>Find your file</h3>
+            <p>
+              Open your phone's Downloads folder or Files app and
+              locate the downloaded APK.
+            </p>
+          </article>
+
+          <article class="step">
+            <div class="step-number">03</div>
+            <h3>Allow installation</h3>
+            <p>
+              If Android asks, enable installation from this source
+              in Settings. Only proceed if you trust the APK.
+            </p>
+          </article>
+
+          <article class="step">
+            <div class="step-number">04</div>
+            <h3>Install and open</h3>
+            <p>
+              Tap Install, wait for the process to finish, and
+              open VideoDownloader.
+            </p>
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- =========================
+         FAQ
+    ========================== -->
+    <section class="section" id="faq">
+
+      <div class="container">
+
+        <div class="section-heading">
+          <span class="eyebrow">HELP CENTER</span>
+          <h2>Frequently asked questions</h2>
+          <p>Useful information before downloading the app.</p>
+        </div>
+
+        <div class="faq">
+
+          <details>
+            <summary>Is VideoDownloader free?</summary>
+            <p>
+              The APK is offered through this download page without
+              a purchase step. Any in-app charges, if applicable,
+              should be described in the app itself.
+            </p>
+          </details>
+
+          <details>
+            <summary>Why can't I download the APK?</summary>
+            <p>
+              Check that your internet connection is working and that
+              the Google Drive file is shared with
+              "Anyone with the link". Google Drive may also show a
+              confirmation screen or temporarily limit downloads.
+            </p>
+          </details>
+
+          <details>
+            <summary>Why does Android show an installation warning?</summary>
+            <p>
+              Android may warn you about apps installed outside
+              Google Play. Verify the file's source and authenticity
+              before proceeding. Never ignore a security warning
+              without understanding it.
+            </p>
+          </details>
+
+          <details>
+            <summary>Can I download videos from every website?</summary>
+            <p>
+              Not necessarily. Support depends on the source,
+              technical restrictions, copyright, permissions, and
+              the platform's terms. Download only content you own
+              or are authorized to save.
+            </p>
+          </details>
+
+          <details>
+            <summary>Does this website belong to Google or YouTube?</summary>
+            <p>
+              No. VideoDownloader is an independent app website
+              and is not affiliated with or endorsed by Google,
+              YouTube, TikTok, Facebook, or their respective owners.
+            </p>
+          </details>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- =========================
+         RESPONSIBLE USE
+    ========================== -->
+    <section class="container">
+
+      <div class="notice">
+
+        <strong>Important information</strong>
+
+        <p style="margin-top: 8px">
+          VideoDownloader is an independent application.
+          Platform names and trademarks belong to their respective
+          owners. Availability of downloading features may vary.
+          Respect copyright, creator permissions, privacy, and each
+          service's terms of use. This website does not guarantee
+          that every video can be downloaded.
+        </p>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+  <footer>
+
+    <div class="container footer-inner">
+
+      <a class="brand" href="#home">
+        <img src="app_icon.png" alt="" width="38" height="38">
+        <span>VideoDownloader</span>
+      </a>
+
+      <div>
+        © <span id="year"></span> VideoDownloader.
+        All rights reserved.
+      </div>
+
+      <div class="footer-links">
+        <a href="#features">Features</a>
+        <a href="#download">Download</a>
+        <a href="#install">Help</a>
+      </div>
+
+    </div>
+
+  </footer>
+
+  <script>
+    // Automatically display the current year.
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+  </script>
+
+</body>
+</html>
